@@ -4,14 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import ec.edu.ups.ppw.modelo.Carro;
-import ec.edu.ups.ppw.modelo.Persona;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 
 @Stateless
-public class CarroDAO {
+public class CarroDAO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@PersistenceContext
 	private EntityManager em;
