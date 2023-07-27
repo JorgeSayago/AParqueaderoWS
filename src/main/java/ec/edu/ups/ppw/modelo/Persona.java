@@ -1,8 +1,14 @@
 package ec.edu.ups.ppw.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Persona {
@@ -19,6 +25,10 @@ public class Persona {
 	
 	@Column(name="per_telefono")
 	private String telefono;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="fac_codigo")
+	private List<Carro> carros;
 
 	public String getCedula() {
 		return cedula;
@@ -52,10 +62,24 @@ public class Persona {
 		this.telefono = telefono;
 	}
 
+	public List<Carro> getCarros() {
+		return carros;
+	}
+	public void setCarros(List<Carro> carros) {
+		this.carros = carros;
+	}
+	
+	public void addCarros(Carro carro) {
+		if(carros == null) {
+			carros= new ArrayList<Carro>();
+		}
+		carros.add(carro);
+	}
+	
 	@Override
 	public String toString() {
-		return "Persona [cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono="
-				+ telefono + "]";
+		return "Persona [cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", carros=" + carros
+				+ "]";
 	}
 	
 	
