@@ -27,7 +27,7 @@ public class Persona {
 	private String telefono;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="fac_codigo")
+	@JoinColumn(name="per_cedula")
 	private List<Carro> carros;
 
 	public String getCedula() {
