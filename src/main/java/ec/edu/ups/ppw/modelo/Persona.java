@@ -75,12 +75,11 @@ public class Persona {
 		}
 		carros.add(carro);
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Persona [cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", carros=" + carros
-				+ "]";
+		return "Persona [cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono="
+				+ telefono + ", carros=" + carros + "]";
 	}
-	
 	
 }
