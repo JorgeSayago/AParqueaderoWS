@@ -50,5 +50,7 @@ public class SampleIT {
     public void test() {
         // This line will be written on the server console.
         System.out.println("Test is invoked...");
+        System.out.println("JJJ");
+        
     }
 }
