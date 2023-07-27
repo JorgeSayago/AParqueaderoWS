@@ -30,6 +30,9 @@ public class Ticket {
 	@Column(name="tic_fecha")
 	private Date fecha;
 	
+	@Column(name="tic_precioPagar")
+	private Double precioPagar;
+	
 	@OneToOne
 	@JoinColumn(name="per_cedula")
 	private Persona persona;
@@ -106,12 +109,21 @@ public class Ticket {
 		this.carro = carro;
 	}
 
+	public Double getPrecioPagar() {
+		return precioPagar;
+	}
+
+	public void setPrecioPagar(Double precioPagar) {
+		this.precioPagar = precioPagar;
+	}
+
 	@Override
 	public String toString() {
 		return "Ticket [codigo=" + codigo + ", numeroTicket=" + numeroTicket + ", horaInicio=" + horaInicio
-				+ ", horaFin=" + horaFin + ", fecha=" + fecha + ", persona=" + persona + ", lugarParqueo="
-				+ lugarParqueo + ", carro=" + carro + "]";
+				+ ", horaFin=" + horaFin + ", fecha=" + fecha + ", precioPagar=" + precioPagar + ", persona=" + persona
+				+ ", lugarParqueo=" + lugarParqueo + ", carro=" + carro + "]";
 	}
+
 	
 	
 
