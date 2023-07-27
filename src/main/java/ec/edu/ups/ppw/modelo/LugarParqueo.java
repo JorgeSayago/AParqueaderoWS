@@ -57,9 +57,4 @@ public class LugarParqueo {
 		return "LugarParqueo [codigo=" + codigo + ", numeroSitio=" + numeroSitio + ", piso=" + piso + ", estado="
 				+ estado + "]";
 	}
-	
-	
-	
-	
-	
 }
