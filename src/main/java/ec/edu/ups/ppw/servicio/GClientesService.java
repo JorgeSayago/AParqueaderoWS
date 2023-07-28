@@ -35,7 +35,8 @@ public class GClientesService {
 		Persona p = new Persona();
 		p.setCedula("0302324657");
 		p.setNombre("Jorge Sayago");
-		
+		p.setDireccion("aa");
+		p.setTelefono("00000");
 		return p;
 	}
 	
