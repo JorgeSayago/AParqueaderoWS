@@ -102,8 +102,8 @@ public class GClientesService {
 
 	}
 	
-	
-	@POST	
+	@POST
+	@Path("carroG")
 	@Produces("application/json")
 	@Consumes("application/json")
 	public Response guardarCarro(Carro carro) {
@@ -118,4 +118,5 @@ public class GClientesService {
 			return Response.status(Response.Status.OK).entity(error).build();
 		}
 	}
+
 }
