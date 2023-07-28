@@ -22,8 +22,32 @@ public class GestionCarro {
 	public void guardarCarro(Carro carro) throws Exception{
 		if (!this.isPlacaValida(carro.getPlaca())) 
 			throw new Exception("Placa incorrecta");
+		if(daoCarro.read(carro.getPlaca()) == null) {
+			try {
+				daoCarro.insert(carro);
+			}catch(Exception e) {
+				throw new Exception("Error al insertar: " + e.getMessage());
+			}
+		}else {
+			try {
+				daoCarro.update(carro);
+			}catch(Exception e) {
+				throw new Exception("Error al actualizar: " + e.getMessage());
+			}
+		}
+	}
+	
+	public void agregarCarro(String placa , String cedula) throws Exception{
 		
-		
+			try {
+				Persona p = daoPersona.read(cedula);
+				Carro c = daoCarro.read(placa);
+				p.addCarros(c);
+				daoPersona.update(p);
+				
+			}catch(Exception e) {
+				throw new Exception("Error al insertar: " + e.getMessage());
+			}	
 	}
 	private boolean isPlacaValida(String placa) {
         String regex = "^[A-Z]{3}-\\d{4}$";
