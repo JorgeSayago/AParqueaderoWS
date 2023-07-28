@@ -2,8 +2,10 @@ package ec.edu.ups.ppw.servicio;
 
 import java.util.List;
 
+import ec.edu.ups.ppw.modelo.Carro;
 import ec.edu.ups.ppw.modelo.Persona;
 import ec.edu.ups.ppw.servicio.Error;
+import ec.edu.ups.ppw.negocio.GestionCarro;
 import ec.edu.ups.ppw.negocio.GestionPersona;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -21,6 +23,9 @@ import jakarta.ws.rs.core.Response;
 public class GClientesService {
 	@Inject
 	private GestionPersona gClientes;
+	private GestionCarro gCarros;
+
+	
 
 	@GET
 	@Path("saludo")
@@ -95,5 +100,22 @@ public class GClientesService {
 	        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(error).build();
 	    }
 
+	}
+	
+	
+	@POST	
+	@Produces("application/json")
+	@Consumes("application/json")
+	public Response guardarCarro(Carro carro) {
+		try {
+			gCarros.guardarCarro(carro);
+			return Response.status(Response.Status.OK).entity(carro).build();
+		}catch(Exception e){
+			e.printStackTrace();
+			Error error = new Error();
+			error.setCodigo(99);
+			error.setMensaje("Error al guardar: " +e.getMessage());
+			return Response.status(Response.Status.OK).entity(error).build();
+		}
 	}
 }
