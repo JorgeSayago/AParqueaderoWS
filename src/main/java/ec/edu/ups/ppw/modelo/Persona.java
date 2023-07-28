@@ -81,5 +81,10 @@ public class Persona {
 		return "Persona [cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono="
 				+ telefono + ", carros=" + carros + "]";
 	}
+
+	public Persona() {
+		
+	}
+	
 	
 }

@@ -49,6 +49,8 @@ public class GestionCarro {
 				throw new Exception("Error al insertar: " + e.getMessage());
 			}	
 	}
+	
+	
 	private boolean isPlacaValida(String placa) {
         String regex = "^[A-Z]{3}-\\d{4}$";
         // Compilar la expresión regular en un objeto Pattern
