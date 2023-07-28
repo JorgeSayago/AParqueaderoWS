@@ -19,26 +19,10 @@ public class GestionCarro {
 	@Inject 
 	private PersonaDAO daoPersona;
 
-	public void guardarCarro(Carro carro, String cedula) throws Exception{
+	public void guardarCarro(Carro carro) throws Exception{
 		if (!this.isPlacaValida(carro.getPlaca())) 
 			throw new Exception("Placa incorrecta");
-		if (daoCarro.read(carro.getPlaca()) == null) {
-			try {
-				Persona per= daoPersona.read(cedula);
-				per.addCarros(carro);
-				daoPersona.update(per);
-				daoCarro.insert(carro);
-				
-			} catch (Exception e) {
-				throw new Exception("Error al insertar: " + e.getMessage());
-			}
-		}else {
-			try {
-				daoCarro.update(carro);
-			} catch (Exception e) {
-				throw new Exception("Error al actualizar: " + e.getMessage());
-			}
-		}
+		
 		
 	}
 	private boolean isPlacaValida(String placa) {
