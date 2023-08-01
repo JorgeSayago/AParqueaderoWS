@@ -43,10 +43,10 @@ public class GestionTicket {
 		}
 	}
 	
-	public void agregarPersona(Ticket ticket, String cedula)throws Exception{
-		Ticket ticketExistente = daoTicket.read(ticket.getCodigo());
+	public void agregarPersona(int codigo, String cedula)throws Exception{
+		Ticket ticketExistente = daoTicket.read(codigo);
 		if (ticketExistente == null) {
-			throw new Exception("El ticket no existe " + ticket.getCodigo() + " no existe");
+			throw new Exception("El ticket no existe " + codigo + " no existe");
 		}
 		try {
 			Persona personaAgregar = daoPersona.read(cedula);
@@ -58,10 +58,10 @@ public class GestionTicket {
 	}
 	
 	
-	public void agregarCarro(Ticket ticket, String placa)throws Exception{
-		Ticket ticketExistente = daoTicket.read(ticket.getCodigo());
+	public void agregarCarro(int codigo, String placa)throws Exception{
+		Ticket ticketExistente = daoTicket.read(codigo);
 		if (ticketExistente == null) {
-			throw new Exception("El ticket no existe " + ticket.getCodigo() + " no existe");
+			throw new Exception("El ticket no existe " + codigo + " no existe");
 		}
 		try {
 			Carro carroAgregar = daoCarro.read(placa);
@@ -74,10 +74,10 @@ public class GestionTicket {
 		}
 	}
 	
-	public void agregarLugar(Ticket ticket, int codigo)throws Exception{
-		Ticket ticketExistente = daoTicket.read(ticket.getCodigo());
+	public void agregarLugar(int codigoT , int codigo)throws Exception{
+		Ticket ticketExistente = daoTicket.read(codigoT);
 		if (ticketExistente == null) {
-			throw new Exception("El ticket no existe " + ticket.getCodigo() + " no existe");
+			throw new Exception("El ticket no existe " + codigoT + " no existe");
 		}
 		try {
 			LugarParqueo lugarAgregar = daoLugarParqueo.read(codigo);
@@ -94,3 +94,4 @@ public class GestionTicket {
 		return daoTicket.getAll();
 	}
 }
+

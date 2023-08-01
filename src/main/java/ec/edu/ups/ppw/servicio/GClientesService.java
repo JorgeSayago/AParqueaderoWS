@@ -6,6 +6,9 @@ import ec.edu.ups.ppw.servicio.Error;
 import ec.edu.ups.ppw.dao.PersonaDAO;
 import ec.edu.ups.ppw.modelo.Persona;
 import ec.edu.ups.ppw.modelo.Ticket;
+import ec.edu.ups.ppw.modelo.AgregarCarroRequest;
+import ec.edu.ups.ppw.modelo.AgregarLugarRequest;
+import ec.edu.ups.ppw.modelo.AgregarPersonaRequest;
 import ec.edu.ups.ppw.modelo.Carro;
 import ec.edu.ups.ppw.modelo.LugarParqueo;
 import ec.edu.ups.ppw.negocio.GestionPersona;
@@ -22,6 +25,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("clientes")
@@ -157,7 +161,58 @@ public class GClientesService {
 	}
 	
 	
+	// Método para agregar una persona a un ticket
+    @POST
+    @Path("agregarPersona")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response agregarPersona(AgregarPersonaRequest request) {
+        try {
+        	gTickets.agregarPersona(request.getTicketCodigo(), request.getCedula());        	
+            return Response.status(Response.Status.OK).entity(request).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Error error = new Error();
+            error.setCodigo(99);
+            error.setMensaje("Error al agregar persona: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(error).build();
+        }
+    }
 	
-	
-
+ // Método para agregar un carro a un ticket
+    @POST
+    @Path("agregarCarro")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response agregarCarro(AgregarCarroRequest request) {
+        try {
+        	gTickets.agregarCarro(request.getTicketCodigo(), request.getPlaca());        	
+            return Response.status(Response.Status.OK).entity(request).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Error error = new Error();
+            error.setCodigo(99);
+            error.setMensaje("Error al agregar persona: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(error).build();
+        }
+    }
+    
+    
+ // Método para agregar un carro a un ticket
+    @POST
+    @Path("agregarLugar")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response agregarLugar(AgregarLugarRequest request) {
+        try {
+        	gTickets.agregarLugar(request.getTicketCodigo(), request.getCodigoLu());        	
+            return Response.status(Response.Status.OK).entity(request).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Error error = new Error();
+            error.setCodigo(99);
+            error.setMensaje("Error al agregar persona: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(error).build();
+        }
+    }
 }
