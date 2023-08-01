@@ -41,9 +41,4 @@ public class LugarParqueoDAO implements Serializable {
 		return q.getResultList();
 	}
 	
-	public List<LugarParqueo> getAllDis(){
-		String jpql = "SELECT l FROM LugarParqueo l where lug_estado=true;";
-		Query q = em.createQuery(jpql);
-		return q.getResultList();
-	}
 }
