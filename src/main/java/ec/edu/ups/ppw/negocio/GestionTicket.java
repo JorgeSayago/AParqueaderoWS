@@ -23,6 +23,12 @@ public class GestionTicket {
 	@Inject 
 	private CarroDAO daoCarro;
 	
+	@Inject 
+	private PersonaDAO daoPersona;
+
+	@Inject 
+	private LugarParqueoDAO daoLugarParqueo;
+	
 	public void guardarTicket(AgregarRequest request) throws Exception{
 		
 		Ticket ticket = new Ticket();
@@ -30,9 +36,15 @@ public class GestionTicket {
 		ticket.setHoraInicio(new Date());
 		ticket.setHoraFin(new Date());
 		ticket.setFecha(new Date());
-		ticket.setPrecioPagar(120.12);
+		ticket.setPrecioPagar(0.0);
 		Carro c = daoCarro.read(request.getPlaca());
+		Persona p = daoPersona.read(request.getCedula());
+		LugarParqueo l = daoLugarParqueo.read(request.getCodigo());
+		l.setEstado(false);
+		daoLugarParqueo.update(l);
 		ticket.setCarro(c);
+		ticket.setPersona(p);
+		ticket.setLugarParqueo(l);
 			try {
 				daoTicket.insert(ticket);
 			}catch(Exception e) {
