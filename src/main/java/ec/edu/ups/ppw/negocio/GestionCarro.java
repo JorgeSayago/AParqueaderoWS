@@ -25,6 +25,8 @@ public class GestionCarro {
 		if(daoCarro.read(carro.getPlaca()) == null) {
 			try {
 				daoCarro.insert(carro);
+				carro.setEstado(true);
+				daoCarro.update(carro);
 			}catch(Exception e) {
 				throw new Exception("Error al insertar: " + e.getMessage());
 			}
