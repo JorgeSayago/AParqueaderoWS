@@ -2,8 +2,10 @@ package ec.edu.ups.ppw.modelo;
 
 import java.util.Date;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -33,15 +35,15 @@ public class Ticket {
 	@Column(name="tic_precioPagar")
 	private Double precioPagar;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="per_cedula")
 	private Persona persona;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="lug_codigo")
 	private LugarParqueo lugarParqueo;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="car_placa")
 	private Carro carro;
 
