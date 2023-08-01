@@ -14,6 +14,9 @@ import jakarta.ws.rs.core.Response;
 @Path("tickets")
 public class GTicketService {
 	
+	int codigo = 0;
+	static Ticket t;
+	
 	
 	@Inject
 	private GestionTicket gTickets;
@@ -29,6 +32,8 @@ public class GTicketService {
 	@Consumes("application/json")
 	public Response guardarTicket(Ticket ticket) {
 		try {
+			GTicketService.t = ticket;
+			codigo = ticket.getCodigo();
 			gTickets.guardarTicket(ticket);
 			return Response.status(Response.Status.OK).entity(ticket).build();
 		}catch(Exception e){
