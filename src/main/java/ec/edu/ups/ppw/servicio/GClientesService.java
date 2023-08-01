@@ -5,9 +5,13 @@ import java.util.List;
 import ec.edu.ups.ppw.servicio.Error;
 import ec.edu.ups.ppw.dao.PersonaDAO;
 import ec.edu.ups.ppw.modelo.Persona;
+import ec.edu.ups.ppw.modelo.Ticket;
 import ec.edu.ups.ppw.modelo.Carro;
+import ec.edu.ups.ppw.modelo.LugarParqueo;
 import ec.edu.ups.ppw.negocio.GestionPersona;
+import ec.edu.ups.ppw.negocio.GestionTicket;
 import ec.edu.ups.ppw.negocio.GestionCarro;
+import ec.edu.ups.ppw.negocio.GestionLugarParqueo;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -28,40 +32,20 @@ public class GClientesService {
 	
 	@Inject
 	private GestionCarro gCarros;
+	
+	
+	@Inject
+	private GestionTicket gTickets;
+	
+	
+	@Inject
+	private GestionLugarParqueo gLugarParqueos;
 
 	@GET
 	@Path("saludo")
 	public String saludo() {
 		return "Hola mundo";
 	}
-	
-	@GET
-	@Path("suma")
-	public String suma(@QueryParam("a") int a,
-			@QueryParam("b") int b) {
-		
-		return " R = " + (a + b);
-	}
-	
-	@GET
-	@Path("multiplicacion/{a}/{b}")
-	public String multiplicacion(@PathParam("a") int a,
-			@PathParam("b") int b) {
-		
-		return " R = " + (a * b);
-	}
-	
-	@GET
-	@Path("misdatos")
-	@Produces("application/json")
-	public Persona misDatos() {
-		Persona p = new Persona();
-		p.setCedula("0103");
-		p.setNombre("Cristian Timbi");
-		
-		return p;
-	}
-	
 	@POST	
 	@Produces("application/json")
 	@Consumes("application/json")
@@ -134,6 +118,45 @@ public class GClientesService {
 			return Response.status(Response.Status.OK).entity(error).build();
 		}
 	}
+	
+	
+	
+	@POST
+	@Path("lugarG")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public Response guardarLugar(LugarParqueo lugarParqueo) {
+		try {
+			gLugarParqueos.guardarLugar(lugarParqueo);
+			return Response.status(Response.Status.OK).entity(lugarParqueo).build();
+		}catch(Exception e){
+			e.printStackTrace();
+			Error error = new Error();
+			error.setCodigo(99);
+			error.setMensaje("Error al guardar: " +e.getMessage());
+			return Response.status(Response.Status.OK).entity(error).build();
+		}
+	}
+	
+	
+	@POST
+	@Path("ticketG")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public Response guardarTicket(Ticket ticket) {
+		try {
+			gTickets.guardarTicket(ticket);
+			return Response.status(Response.Status.OK).entity(ticket).build();
+		}catch(Exception e){
+			e.printStackTrace();
+			Error error = new Error();
+			error.setCodigo(99);
+			error.setMensaje("Error al guardar: " +e.getMessage());
+			return Response.status(Response.Status.OK).entity(error).build();
+		}
+	}
+	
+	
 	
 	
 
