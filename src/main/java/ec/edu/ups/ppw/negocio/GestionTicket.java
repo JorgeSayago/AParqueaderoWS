@@ -17,16 +17,6 @@ public class GestionTicket {
 	@Inject 
 	private TicketDAO daoTicket;
 	
-	@Inject 
-	private PersonaDAO daoPersona;
-	
-	@Inject 
-	private CarroDAO daoCarro;
-	
-	@Inject 
-	private LugarParqueoDAO daoLugarParqueo;
-	
-	
 	public void guardarTicket(Ticket ticket) throws Exception{
 		if(daoTicket.read(ticket.getCodigo()) == null) {
 			try {
@@ -43,51 +33,32 @@ public class GestionTicket {
 		}
 	}
 	
-	public void agregarPersona(int codigo, String cedula)throws Exception{
-		Ticket ticketExistente = daoTicket.read(codigo);
-		if (ticketExistente == null) {
-			throw new Exception("El ticket no existe " + codigo + " no existe");
-		}
-		try {
-			Persona personaAgregar = daoPersona.read(cedula);
-			ticketExistente.setPersona(personaAgregar);
-			daoTicket.update(ticketExistente);
-		} catch (Exception e) {
-			throw new Exception("Error al actualizar: " + e.getMessage());
-		}
+	
+	public void eliminarTicket(Ticket ticket) throws Exception {
+		
+	    Ticket ticket2 = daoTicket.read(ticket.getCodigo());
+	    if (ticket2 == null) {
+	        throw new Exception("El ticket con la codigo " + ticket2.getCodigo() + " no existe");
+	    }
+
+	    try {
+	        daoTicket.delete(ticket.getCodigo());
+	    } catch (Exception e) {
+	        throw new Exception("Error al eliminar: " + e.getMessage());
+	    }
 	}
 	
-	
-	public void agregarCarro(int codigo, String placa)throws Exception{
-		Ticket ticketExistente = daoTicket.read(codigo);
-		if (ticketExistente == null) {
-			throw new Exception("El ticket no existe " + codigo + " no existe");
-		}
-		try {
-			Carro carroAgregar = daoCarro.read(placa);
-			carroAgregar.setEstado(false);
-			daoCarro.update(carroAgregar);
-			ticketExistente.setCarro(carroAgregar);
-			daoTicket.update(ticketExistente);
-		} catch (Exception e) {
-			throw new Exception("Error al actualizar: " + e.getMessage());
-		}
-	}
-	
-	public void agregarLugar(int codigoT , int codigo)throws Exception{
-		Ticket ticketExistente = daoTicket.read(codigoT);
-		if (ticketExistente == null) {
-			throw new Exception("El ticket no existe " + codigoT + " no existe");
-		}
-		try {
-			LugarParqueo lugarAgregar = daoLugarParqueo.read(codigo);
-			lugarAgregar.setEstado(false);
-			daoLugarParqueo.update(lugarAgregar);
-			ticketExistente.setLugarParqueo(lugarAgregar);
-			daoTicket.update(ticketExistente);
-		} catch (Exception e) {
-			throw new Exception("Error al actualizar: " + e.getMessage());
-		}
+	public void actualizarTicket(Ticket ticket) throws Exception {
+	    Ticket ticketExistente = daoTicket.read(ticket.getCodigo());
+	    if (ticketExistente == null) {
+	        throw new Exception("El ticket con codigo " + ticket.getCodigo() + " no existe");
+	    }
+
+	    try {
+	        daoTicket.update(ticket); 
+	    } catch (Exception e) {
+	        throw new Exception("Error al actualizar: " + e.getMessage());
+	    }
 	}
 	
 	public List<Ticket>getTickets(){
