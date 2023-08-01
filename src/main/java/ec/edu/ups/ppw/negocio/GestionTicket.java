@@ -1,5 +1,6 @@
 package ec.edu.ups.ppw.negocio;
 
+import java.util.Date;
 import java.util.List;
 
 import ec.edu.ups.ppw.dao.CarroDAO;
@@ -10,29 +11,34 @@ import ec.edu.ups.ppw.modelo.Carro;
 import ec.edu.ups.ppw.modelo.LugarParqueo;
 import ec.edu.ups.ppw.modelo.Persona;
 import ec.edu.ups.ppw.modelo.Ticket;
+import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 
+@Stateless
 public class GestionTicket {
 	
 	@Inject 
 	private TicketDAO daoTicket;
 	
-	public void guardarTicket(Ticket ticket) throws Exception{
-		if(daoTicket.read(ticket.getCodigo()) == null) {
+	@Inject 
+	private CarroDAO daoCarro;
+	
+	public void guardarTicket(AgregarRequest request) throws Exception{
+		
+		Ticket ticket = new Ticket();
+		ticket.setNumeroTicket(request.getNumeroTicket());
+		ticket.setHoraInicio(new Date());
+		ticket.setHoraFin(new Date());
+		ticket.setFecha(new Date());
+		ticket.setPrecioPagar(120.12);
+		Carro c = daoCarro.read(request.getPlaca());
+		ticket.setCarro(c);
 			try {
 				daoTicket.insert(ticket);
 			}catch(Exception e) {
 				throw new Exception("Error al insertar: " + e.getMessage());
 			}
-		}else {
-			try {
-				daoTicket.update(ticket);
-			}catch(Exception e) {
-				throw new Exception("Error al actualizar: " + e.getMessage());
-			}
-		}
 	}
-	
 	
 	public void eliminarTicket(Ticket ticket) throws Exception {
 		
@@ -64,5 +70,22 @@ public class GestionTicket {
 	public List<Ticket>getTickets(){
 		return daoTicket.getAll();
 	}
+	
+	/**
+	 * public void guardarTicket(Ticket ticket) throws Exception{
+		if(daoTicket.read(ticket.getCodigo()) == null) {
+			try {
+				daoTicket.insert(ticket);
+			}catch(Exception e) {
+				throw new Exception("Error al insertar: " + e.getMessage());
+			}
+		}else {
+			try {
+				daoTicket.update(ticket);
+			}catch(Exception e) {
+				throw new Exception("Error al actualizar: " + e.getMessage());
+			}
+		}
+	}*/
 }
 

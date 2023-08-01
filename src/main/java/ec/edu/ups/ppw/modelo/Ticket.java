@@ -125,8 +125,5 @@ public class Ticket {
 				+ ", horaFin=" + horaFin + ", fecha=" + fecha + ", precioPagar=" + precioPagar + ", persona=" + persona
 				+ ", lugarParqueo=" + lugarParqueo + ", carro=" + carro + "]";
 	}
-
 	
-	
-
 }
