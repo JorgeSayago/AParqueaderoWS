@@ -3,10 +3,8 @@ package ec.edu.ups.ppw.servicio;
 import java.util.List;
 
 import ec.edu.ups.ppw.servicio.Error;
-import ec.edu.ups.ppw.dao.PersonaDAO;
 import ec.edu.ups.ppw.modelo.Persona;
 import ec.edu.ups.ppw.modelo.Ticket;
-import ec.edu.ups.ppw.modelo.Carro;
 import ec.edu.ups.ppw.modelo.LugarParqueo;
 import ec.edu.ups.ppw.negocio.GestionPersona;
 import ec.edu.ups.ppw.negocio.GestionTicket;
