@@ -53,6 +53,16 @@ public class GLugarParqueoService {
 	}
 	
 	
+	@GET
+	@Path("allDis")
+	@Produces("application/json")
+	public Response getLugaresDisponibles() {
+		List<LugarParqueo> listado = gLugarParqueo.getParqueosDis();
+		
+		return Response.status(Response.Status.OK).entity(listado).build();
+	}
+	
+	
 	@DELETE
 	@Produces("application/json")
 	@Consumes("application/json")

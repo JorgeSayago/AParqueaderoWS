@@ -57,6 +57,10 @@ public class GestionLugarParqueo {
 	public List<LugarParqueo>getParqueos(){
 		return daoLugarParqueo.getAll();
 	}
+	
+	public List<LugarParqueo>getParqueosDis(){
+		return daoLugarParqueo.getAllDis();
+	}
 		
 		
 	}
