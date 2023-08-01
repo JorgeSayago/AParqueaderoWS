@@ -19,8 +19,8 @@ public class Carro {
 	@Column(name="car_modelo")
 	private String modelo;
 	
-	@Column(name="car_anio")
-	private String anio;
+	@Column(name="car_estado")
+	private boolean estado;
 
 	public String getPlaca() {
 		return placa;
@@ -46,16 +46,19 @@ public class Carro {
 		this.modelo = modelo;
 	}
 
-	public String getAnio() {
-		return anio;
+	public boolean isEstado() {
+		return estado;
 	}
 
-	public void setAnio(String anio) {
-		this.anio = anio;
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 
 	@Override
 	public String toString() {
-		return "Carro [placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + "]";
+		return "Carro [placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", estado=" + estado + "]";
 	}
+	
+	
+	
 }

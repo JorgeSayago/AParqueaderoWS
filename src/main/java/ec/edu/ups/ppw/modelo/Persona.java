@@ -25,10 +25,6 @@ public class Persona {
 	
 	@Column(name="per_telefono")
 	private String telefono;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="per_cedula")
-	private List<Carro> carros;
 
 	public String getCedula() {
 		return cedula;
@@ -62,29 +58,13 @@ public class Persona {
 		this.telefono = telefono;
 	}
 
-	public List<Carro> getCarros() {
-		return carros;
-	}
-	public void setCarros(List<Carro> carros) {
-		this.carros = carros;
-	}
-	
-	public void addCarros(Carro carro) {
-		if(carros == null) {
-			carros= new ArrayList<Carro>();
-		}
-		carros.add(carro);
-	}
-
 	@Override
 	public String toString() {
 		return "Persona [cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono="
-				+ telefono + ", carros=" + carros + "]";
+				+ telefono + "]";
 	}
-
-	public Persona() {
-		
-	}
+	
+	
 	
 	
 }

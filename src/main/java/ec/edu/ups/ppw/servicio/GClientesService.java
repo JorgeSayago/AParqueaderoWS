@@ -135,21 +135,6 @@ public class GClientesService {
 		}
 	}
 	
-	@PUT
-	@Path("addCarro")
-	@Produces("application/json")
-	@Consumes("application/json")
-	public Response agregarCarro(String placa , String cedula) {
-	    try {
-	        gCarros.agregarCarro(placa, cedula);
-	        return Response.status(Response.Status.OK).build();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        Error error = new Error();
-	        error.setCodigo(99);
-	        error.setMensaje("Error al actualizar: " + e.getMessage());
-	        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(error).build();
-	    }
-	}
+	
 
 }
