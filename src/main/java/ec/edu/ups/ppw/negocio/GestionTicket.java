@@ -31,7 +31,6 @@ public class GestionTicket {
 	private LugarParqueoDAO daoLugarParqueo;
 	
 	public void guardarTicket(AgregarRequest request) throws Exception{
-		
 		Ticket ticket = new Ticket();
 		ticket.setHoraInicio(new Date());
 		ticket.setFecha(new Date());
