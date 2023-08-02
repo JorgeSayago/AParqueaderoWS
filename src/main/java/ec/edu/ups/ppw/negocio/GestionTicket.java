@@ -39,7 +39,21 @@ public class GestionTicket {
 		Ticket ticket = new Ticket();
 		ticket.setHoraInicio(new Date());
 		ticket.setFecha(new Date());
-		ticket.setPrecioPagar(0.0);
+		
+		Double precioTarifa = Double.valueOf(request.getTiempo());
+		if (precioTarifa >= 5 && precioTarifa < 10) {
+			ticket.setPrecioPagar(precioTarifa*0.10);
+        } else if (precioTarifa >= 10 && precioTarifa < 30) {
+        	ticket.setPrecioPagar(precioTarifa*0.20);
+        } else if (precioTarifa >= 30 && precioTarifa < 50) {
+        	ticket.setPrecioPagar(precioTarifa*0.35);
+        } else if (precioTarifa >= 50 && precioTarifa <= 120) {
+        	ticket.setPrecioPagar(precioTarifa*0.50);
+        } else if (precioTarifa > 120 && precioTarifa <= 15000) {
+        	ticket.setPrecioPagar(precioTarifa*0.75);
+        } else {
+        	ticket.setPrecioPagar(0.0);
+        }
 		//ticket.setUbicacion(request.getUbicacion());
 		Sitio s = daoSitio.read(request.getUbicacion());
 		s.setEstado(false);
