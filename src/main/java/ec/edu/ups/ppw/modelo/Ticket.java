@@ -17,12 +17,9 @@ import jakarta.persistence.OneToOne;
 public class Ticket {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	@Column(name="tic_codigo")
 	private int codigo;
-	
-	//@Column(name="tic_numeroTicket")
-	//private String numeroTicket;
 	
 	@Column(name="tic_horaInicio")
 	private Date horaInicio;
@@ -36,15 +33,15 @@ public class Ticket {
 	@Column(name="tic_precioPagar")
 	private Double precioPagar;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="per_cedula")
 	private Persona persona;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="lug_codigo")
 	private LugarParqueo lugarParqueo;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="car_placa")
 	private Carro carro;
 

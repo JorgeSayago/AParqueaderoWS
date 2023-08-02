@@ -30,10 +30,10 @@ public class GTicketService {
 	@POST	
 	@Produces("application/json")
 	@Consumes("application/json")
-	public Response guardarTicket(Ticket ticket) {
+	public Response guardarTicket(AgregarRequest request) {
 		try {
-			gTicket.guardarTicket(ticket);
-			return Response.status(Response.Status.OK).entity(ticket).build();
+			gTicket.guardarTicket(request);
+			return Response.status(Response.Status.OK).entity(request).build();
 		}catch(Exception e){
 			e.printStackTrace();
 			Error error = new Error();
