@@ -9,7 +9,7 @@ public class LugarParqueo {
 
 	@Id
 	@Column(name="lug_codigo")
-	private String codigo;
+	private int codigo;
 	
 	@Column(name="lug_numeroSitio")
 	private int numeroSitio;
@@ -20,11 +20,12 @@ public class LugarParqueo {
 	@Column(name="lug_estado")
 	private boolean estado;
 
-	public String getCodigo() {
+	
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 

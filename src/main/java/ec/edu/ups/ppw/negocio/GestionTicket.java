@@ -37,7 +37,6 @@ public class GestionTicket {
 		ticket.setPrecioPagar(0.0);
 		 Carro c = daoCarro.read(request.getPlaca());
 		 Persona p = daoPersona.read(request.getCedula());
-		//LugarParqueo l = daoLugarParqueo.read(request.getCodigo());
 		 ticket.setCarro(c);
 		 ticket.setPersona(p);
 			try {

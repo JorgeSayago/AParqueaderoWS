@@ -15,6 +15,6 @@ public class AgregarRequest {
 	}
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
-	}
+	}	
 	
 }
