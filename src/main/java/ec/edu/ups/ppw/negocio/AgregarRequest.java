@@ -3,7 +3,7 @@ package ec.edu.ups.ppw.negocio;
 public class AgregarRequest {
 	private String placa;
 	private String cedula;
-	private int codigo;
+	private String ubicacion;
 	
 	public String getPlaca() {
 		return placa;
@@ -16,6 +16,11 @@ public class AgregarRequest {
 	}
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
-	}	
-	
+	}
+	public String getUbicacion() {
+		return ubicacion;
+	}
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
 }

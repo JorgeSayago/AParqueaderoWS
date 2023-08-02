@@ -36,6 +36,7 @@ public class GestionTicket {
 		ticket.setHoraInicio(new Date());
 		ticket.setFecha(new Date());
 		ticket.setPrecioPagar(0.0);
+		ticket.setUbicacion(request.getUbicacion());
 		 Carro c = daoCarro.read(request.getPlaca());
 		 Persona p = daoPersona.read(request.getCedula());
 		 ticket.setCarro(c);
@@ -86,7 +87,6 @@ public class GestionTicket {
 			Date fecha=t.getFecha();
 			int codigo=t.getCodigo();
 			String ubicacion = t.getUbicacion();
-			
 			ListarRequest lista = new ListarRequest(placa, cedula, horaInicio, horaFin, precioPagar, fecha,codigo,ubicacion);
 			listadoF.add(lista);
 		}
