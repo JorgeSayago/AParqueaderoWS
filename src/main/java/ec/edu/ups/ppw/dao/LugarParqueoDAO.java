@@ -25,12 +25,12 @@ public class LugarParqueoDAO implements Serializable {
 		em.merge(lugarParqueo);
 	}
 	
-	public LugarParqueo read(int codigo) {
+	public LugarParqueo read(String codigo) {
 		LugarParqueo l = em.find(LugarParqueo.class, codigo);
 		return l;
 	}
 	
-	public void delete(int codigo) {
+	public void delete(String codigo) {
 		LugarParqueo l = em.find(LugarParqueo.class, codigo);
 		em.remove(l);
 	}
