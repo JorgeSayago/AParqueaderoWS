@@ -7,6 +7,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -16,9 +17,9 @@ import jakarta.persistence.OneToOne;
 public class Ticket {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="tic_codigo")
-	private String codigo;
+	private int codigo;
 	
 	//@Column(name="tic_numeroTicket")
 	//private String numeroTicket;
@@ -35,25 +36,25 @@ public class Ticket {
 	@Column(name="tic_precioPagar")
 	private Double precioPagar;
 	
-	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="per_cedula")
 	private Persona persona;
 	
-	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="lug_codigo")
 	private LugarParqueo lugarParqueo;
 	
-	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="car_placa")
 	private Carro carro;
 
 
 
-	public String getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 

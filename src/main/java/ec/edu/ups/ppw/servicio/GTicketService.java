@@ -2,7 +2,6 @@ package ec.edu.ups.ppw.servicio;
 
 import java.util.List;
 
-import ec.edu.ups.demoSJ.modelo.Persona;
 import ec.edu.ups.ppw.modelo.Carro;
 import ec.edu.ups.ppw.modelo.Ticket;
 import ec.edu.ups.ppw.negocio.AgregarRequest;
@@ -31,10 +30,10 @@ public class GTicketService {
 	@POST	
 	@Produces("application/json")
 	@Consumes("application/json")
-	public Response guardarTicket(AgregarRequest request) {
+	public Response guardarTicket(Ticket ticket) {
 		try {
-			gTicket.guardarTicket(request);
-			return Response.status(Response.Status.OK).entity(request).build();
+			gTicket.guardarTicket(ticket);
+			return Response.status(Response.Status.OK).entity(ticket).build();
 		}catch(Exception e){
 			e.printStackTrace();
 			Error error = new Error();

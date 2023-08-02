@@ -25,12 +25,12 @@ public class TicketDAO implements Serializable{
 		em.merge(ticket);
 	}
 	
-	public Ticket read(String codigo) {
+	public Ticket read(int codigo) {
 		Ticket t = em.find(Ticket.class, codigo);
 		return t;
 	}
 	
-	public void delete(String codigo) {
+	public void delete(int codigo) {
 		Ticket t = em.find(Ticket.class, codigo);
 		em.remove(t);
 	}
