@@ -32,7 +32,8 @@ public class GestionTicket {
 	public void guardarTicket(AgregarRequest request) throws Exception{
 		
 		Ticket ticket = new Ticket();
-		ticket.setNumeroTicket(request.getNumeroTicket());
+		//ticket.setNumeroTicket(request.getNumeroTicket());
+
 		ticket.setHoraInicio(new Date());
 		ticket.setHoraFin(new Date());
 		ticket.setFecha(new Date());

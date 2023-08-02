@@ -1,5 +1,8 @@
 package ec.edu.ups.ppw.servicio;
 
+import java.util.List;
+
+import ec.edu.ups.demoSJ.modelo.Persona;
 import ec.edu.ups.ppw.modelo.Carro;
 import ec.edu.ups.ppw.modelo.Ticket;
 import ec.edu.ups.ppw.negocio.AgregarRequest;
@@ -39,6 +42,15 @@ public class GTicketService {
 			error.setMensaje("Error al guardar: " +e.getMessage());
 			return Response.status(Response.Status.OK).entity(error).build();
 		}
+	}
+	
+	@GET
+	@Path("all")
+	@Produces("application/json")
+	public Response getTickets() {
+		List<Ticket> listado = gTicket.getTickets();
+		
+		return Response.status(Response.Status.OK).entity(listado).build();
 	}
 
 }

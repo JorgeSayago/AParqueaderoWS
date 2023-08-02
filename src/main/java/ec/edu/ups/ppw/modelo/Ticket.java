@@ -18,10 +18,10 @@ public class Ticket {
 	@Id
 	@GeneratedValue
 	@Column(name="tic_codigo")
-	private int codigo;
+	private String codigo;
 	
-	@Column(name="tic_numeroTicket")
-	private String numeroTicket;
+	//@Column(name="tic_numeroTicket")
+	//private String numeroTicket;
 	
 	@Column(name="tic_horaInicio")
 	private Date horaInicio;
@@ -47,20 +47,14 @@ public class Ticket {
 	@JoinColumn(name="car_placa")
 	private Carro carro;
 
-	public int getCodigo() {
+
+
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
-	}
-
-	public String getNumeroTicket() {
-		return numeroTicket;
-	}
-
-	public void setNumeroTicket(String numeroTicket) {
-		this.numeroTicket = numeroTicket;
 	}
 
 	public Date getHoraInicio() {
@@ -121,9 +115,13 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Ticket [codigo=" + codigo + ", numeroTicket=" + numeroTicket + ", horaInicio=" + horaInicio
-				+ ", horaFin=" + horaFin + ", fecha=" + fecha + ", precioPagar=" + precioPagar + ", persona=" + persona
-				+ ", lugarParqueo=" + lugarParqueo + ", carro=" + carro + "]";
+		return "Ticket [codigo=" + codigo + ", horaInicio=" + horaInicio + ", horaFin=" + horaFin + ", fecha=" + fecha
+				+ ", precioPagar=" + precioPagar + ", persona=" + persona + ", lugarParqueo=" + lugarParqueo
+				+ ", carro=" + carro + "]";
 	}
+
+
+
+
 	
 }
