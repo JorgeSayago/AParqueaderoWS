@@ -7,10 +7,12 @@ import java.util.List;
 import ec.edu.ups.ppw.dao.CarroDAO;
 import ec.edu.ups.ppw.dao.LugarParqueoDAO;
 import ec.edu.ups.ppw.dao.PersonaDAO;
+import ec.edu.ups.ppw.dao.SitioDAO;
 import ec.edu.ups.ppw.dao.TicketDAO;
 import ec.edu.ups.ppw.modelo.Carro;
 import ec.edu.ups.ppw.modelo.LugarParqueo;
 import ec.edu.ups.ppw.modelo.Persona;
+import ec.edu.ups.ppw.modelo.Sitio;
 import ec.edu.ups.ppw.modelo.Ticket;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
@@ -30,16 +32,21 @@ public class GestionTicket {
 	@Inject 
 	private LugarParqueoDAO daoLugarParqueo;
 	
+	@Inject 
+	private SitioDAO daoSitio ;
+	
 	public void guardarTicket(AgregarRequest request) throws Exception{
 		Ticket ticket = new Ticket();
 		ticket.setHoraInicio(new Date());
 		ticket.setFecha(new Date());
 		ticket.setPrecioPagar(0.0);
-		ticket.setUbicacion(request.getUbicacion());
+		//ticket.setUbicacion(request.getUbicacion());
+		Sitio s = daoSitio.read(request.getUbicacion());
 		 Carro c = daoCarro.read(request.getPlaca());
 		 Persona p = daoPersona.read(request.getCedula());
 		 ticket.setCarro(c);
 		 ticket.setPersona(p);
+		 ticket.setSitio(s);
 			try {
 				daoTicket.insert(ticket);
 			}catch(Exception e) {
@@ -85,7 +92,7 @@ public class GestionTicket {
 			Double precioPagar=t.getPrecioPagar();
 			Date fecha=t.getFecha();
 			int codigo=t.getCodigo();
-			String ubicacion = t.getUbicacion();
+			String ubicacion = t.getSitio().getUbicacion();
 			ListarRequest lista = new ListarRequest(placa, cedula, horaInicio, horaFin, precioPagar, fecha,codigo,ubicacion);
 			listadoF.add(lista);
 		}
