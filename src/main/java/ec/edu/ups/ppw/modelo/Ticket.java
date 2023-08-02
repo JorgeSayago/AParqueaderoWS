@@ -45,8 +45,6 @@ public class Ticket {
 	@JoinColumn(name="car_placa")
 	private Carro carro;
 
-
-
 	public int getCodigo() {
 		return codigo;
 	}
@@ -79,6 +77,14 @@ public class Ticket {
 		this.fecha = fecha;
 	}
 
+	public Double getPrecioPagar() {
+		return precioPagar;
+	}
+
+	public void setPrecioPagar(Double precioPagar) {
+		this.precioPagar = precioPagar;
+	}
+
 	public Persona getPersona() {
 		return persona;
 	}
@@ -103,23 +109,11 @@ public class Ticket {
 		this.carro = carro;
 	}
 
-	public Double getPrecioPagar() {
-		return precioPagar;
-	}
-
-	public void setPrecioPagar(Double precioPagar) {
-		this.precioPagar = precioPagar;
-	}
-
 	@Override
 	public String toString() {
 		return "Ticket [codigo=" + codigo + ", horaInicio=" + horaInicio + ", horaFin=" + horaFin + ", fecha=" + fecha
 				+ ", precioPagar=" + precioPagar + ", persona=" + persona + ", lugarParqueo=" + lugarParqueo
 				+ ", carro=" + carro + "]";
 	}
-
-
-
-
 	
 }

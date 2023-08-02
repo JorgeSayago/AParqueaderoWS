@@ -40,7 +40,6 @@ public class GestionTicket {
 		//LugarParqueo l = daoLugarParqueo.read(request.getCodigo());
 		 ticket.setCarro(c);
 		 ticket.setPersona(p);
-		//ticket.setLugarParqueo(l);
 			try {
 				daoTicket.insert(ticket);
 			}catch(Exception e) {
