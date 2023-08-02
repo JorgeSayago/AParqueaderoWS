@@ -33,13 +33,16 @@ public class Ticket {
 	@Column(name="tic_precioPagar")
 	private Double precioPagar;
 	
+	@Column(name="tic_ubicacion")
+	private String ubicacion;
+	
 	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="per_cedula")
 	private Persona persona;
 	
-	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="lug_codigo")
-	private LugarParqueo lugarParqueo;
+	//@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	//@JoinColumn(name="lug_codigo")
+	//private LugarParqueo lugarParqueo;
 	
 	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="car_placa")
@@ -92,7 +95,17 @@ public class Ticket {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
+	
+	
+public String getUbicacion() {
+		return ubicacion;
+	}
 
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	/*
 	public LugarParqueo getLugarParqueo() {
 		return lugarParqueo;
 	}
@@ -100,7 +113,7 @@ public class Ticket {
 	public void setLugarParqueo(LugarParqueo lugarParqueo) {
 		this.lugarParqueo = lugarParqueo;
 	}
-
+*/
 	public Carro getCarro() {
 		return carro;
 	}
@@ -112,8 +125,9 @@ public class Ticket {
 	@Override
 	public String toString() {
 		return "Ticket [codigo=" + codigo + ", horaInicio=" + horaInicio + ", horaFin=" + horaFin + ", fecha=" + fecha
-				+ ", precioPagar=" + precioPagar + ", persona=" + persona + ", lugarParqueo=" + lugarParqueo
-				+ ", carro=" + carro + "]";
+				+ ", precioPagar=" + precioPagar + ", ubicacion=" + ubicacion + ", persona=" + persona + ", carro="
+				+ carro + "]";
 	}
+
 	
 }

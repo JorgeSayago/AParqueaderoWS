@@ -3,6 +3,7 @@ package ec.edu.ups.ppw.negocio;
 public class AgregarRequest {
 	private String placa;
 	private String cedula;
+	private int codigo;
 	
 	public String getPlaca() {
 		return placa;

@@ -1,5 +1,6 @@
 package ec.edu.ups.ppw.negocio;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -73,9 +74,27 @@ public class GestionTicket {
 	    }
 	}
 	
-	public List<Ticket>getTickets(){
-		return daoTicket.getAll();
+	public List<ListarRequest>getTickets(){
+		List<ListarRequest> listadoF = new ArrayList<ListarRequest>();
+		List<Ticket> ticketsE=daoTicket.getAll();
+		for(Ticket t:ticketsE) {
+			String placa=t.getCarro().getPlaca();
+			String cedula=t.getPersona().getCedula();
+			Date horaInicio=t.getHoraInicio();
+			Date horaFin=t.getHoraFin();
+			Double precioPagar=t.getPrecioPagar();
+			Date fecha=t.getFecha();
+			int codigo=t.getCodigo();
+			String ubicacion = t.getUbicacion();
+			
+			ListarRequest lista = new ListarRequest(placa, cedula, horaInicio, horaFin, precioPagar, fecha,codigo,ubicacion);
+			listadoF.add(lista);
+		}
+		return listadoF;
 	}
+	/*public List<Ticket>getTickets(){
+		return daoTicket.getAll();
+	}**/
 	
 	/**
 	 * public void guardarTicket(Ticket ticket) throws Exception{

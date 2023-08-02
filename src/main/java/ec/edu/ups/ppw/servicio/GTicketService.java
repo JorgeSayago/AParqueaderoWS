@@ -6,6 +6,7 @@ import ec.edu.ups.ppw.modelo.Carro;
 import ec.edu.ups.ppw.modelo.Ticket;
 import ec.edu.ups.ppw.negocio.AgregarRequest;
 import ec.edu.ups.ppw.negocio.GestionTicket;
+import ec.edu.ups.ppw.negocio.ListarRequest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -47,8 +48,7 @@ public class GTicketService {
 	@Path("all")
 	@Produces("application/json")
 	public Response getTickets() {
-		List<Ticket> listado = gTicket.getTickets();
-		
+		List<ListarRequest> listado = gTicket.getTickets();
 		return Response.status(Response.Status.OK).entity(listado).build();
 	}
 
