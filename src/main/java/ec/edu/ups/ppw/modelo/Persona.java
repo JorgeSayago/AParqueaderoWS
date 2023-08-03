@@ -13,6 +13,7 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Persona {
 	
+	//Creamos los atributos para la clase Persona
 	@Id
 	@Column(name="per_cedula")
 	private String cedula;
@@ -26,6 +27,7 @@ public class Persona {
 	@Column(name="per_telefono")
 	private String telefono;
 
+	//Generamos los getter y setter para la clase Persona
 	public String getCedula() {
 		return cedula;
 	}
@@ -58,6 +60,7 @@ public class Persona {
 		this.telefono = telefono;
 	}
 
+	//Generamos el toString para la clase Persona
 	@Override
 	public String toString() {
 		return "Persona [cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono="

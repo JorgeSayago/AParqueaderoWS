@@ -5,10 +5,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-
 @Entity
 public class Carro {
-
+	
+	//Generamos los atributos para la clase Carro
 	@Id
 	@Column(name="car_placa")
 	private String placa;
@@ -21,6 +21,8 @@ public class Carro {
 	
 	@Column(name="car_estado")
 	private boolean estado;
+	
+	//Creacion de getters y setters para la clase carro
 
 	public String getPlaca() {
 		return placa;
@@ -54,6 +56,7 @@ public class Carro {
 		this.estado = estado;
 	}
 
+	//Generamos el toString para la clase carro
 	@Override
 	public String toString() {
 		return "Carro [placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", estado=" + estado + "]";
