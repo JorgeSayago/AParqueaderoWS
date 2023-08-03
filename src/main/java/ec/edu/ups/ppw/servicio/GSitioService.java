@@ -31,6 +31,7 @@ public class GSitioService {
 		return "Hola mundo";
 	}
 	
+	//Servicio para guardar Sitio
 	@POST	
 	@Produces("application/json")
 	@Consumes("application/json")
@@ -47,6 +48,7 @@ public class GSitioService {
 		}
 	}
 	
+	//Servicio para obtener todos los sitios
 	@GET
 	@Path("all")
 	@Produces("application/json")

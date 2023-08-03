@@ -34,6 +34,8 @@ public class GClientesService {
 	public String saludo() {
 		return "Hola mundo";
 	}
+	
+	//Servicio para guardar cliente
 	@POST	
 	@Produces("application/json")
 	@Consumes("application/json")
@@ -50,6 +52,7 @@ public class GClientesService {
 		}
 	}
 	
+	//Servicio para obtener todos los clientes
 	@GET
 	@Path("all")
 	@Produces("application/json")
@@ -59,6 +62,7 @@ public class GClientesService {
 		return Response.status(Response.Status.OK).entity(listado).build();
 	}
 	
+	//Servicio para eliminar cliente
 	@DELETE
 	@Produces("application/json")
 	@Consumes("application/json")
@@ -75,6 +79,8 @@ public class GClientesService {
 	    }
 	}
 	
+	
+	//Servicio para actualizar cliente
 	@PUT
 	@Produces("application/json")
 	@Consumes("application/json")

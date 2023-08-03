@@ -27,6 +27,7 @@ public class GCarrosService {
 		return "Hola mundo";
 	}
 	
+	//Servicio para guardar carro
 	@POST	
 	@Produces("application/json")
 	@Consumes("application/json")
@@ -43,6 +44,7 @@ public class GCarrosService {
 		}
 	}
 	
+	//Servicio para para obtener todos los carros
 	@GET
 	@Path("all")
 	@Produces("application/json")
@@ -52,6 +54,7 @@ public class GCarrosService {
 		return Response.status(Response.Status.OK).entity(listado).build();
 	}
 	
+	//Servicio para eliminar carros
 	@DELETE
 	@Produces("application/json")
 	@Consumes("application/json")
@@ -68,6 +71,7 @@ public class GCarrosService {
 	    }
 	}
 	
+	//Servicio para actualizar carros
 	@PUT
 	@Produces("application/json")
 	@Consumes("application/json")

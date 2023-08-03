@@ -7,6 +7,7 @@ import jakarta.ws.rs.container.ContainerResponseContext;
 import jakarta.ws.rs.container.ContainerResponseFilter;
 import jakarta.ws.rs.ext.Provider;
 
+//Con esta clase podemos realizar la correcta cominicacion con el front end
 @Provider
 public class CORSFilter implements ContainerResponseFilter{
     @Override

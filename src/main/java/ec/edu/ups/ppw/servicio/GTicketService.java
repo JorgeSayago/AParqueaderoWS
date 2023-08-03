@@ -28,6 +28,8 @@ public class GTicketService {
 		return "Hola mundo";
 	}
 	
+	//Servicio para guardar ticket en la base de datos
+	
 	@POST	
 	@Produces("application/json")
 	@Consumes("application/json")
@@ -44,6 +46,7 @@ public class GTicketService {
 		}
 	}
 	
+	//Servicio para obtener todos los tickets de la base de datos
 	@GET
 	@Path("all")
 	@Produces("application/json")
