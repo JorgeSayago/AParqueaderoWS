@@ -3,6 +3,7 @@ package ec.edu.ups.ppw.negocio;
 import java.util.Date;
 
 public class ListarRequest {
+	//Atributos de la placa necesarios para usarlos en el servicio que listara todos los tickets
 	private String placa;
 	private String cedula;
 	private Date horaInicio;
@@ -12,6 +13,7 @@ public class ListarRequest {
 	private int codigo;
 	private String ubicacion;
 	
+	//Getter y setter para los atributos de la clase
 	public String getPlaca() {
 		return placa;
 	}
@@ -60,6 +62,8 @@ public class ListarRequest {
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
 	}
+	
+	//Cosntructor para crear objetos de esta clase necesarios para el servicio de listar todos los tickets disponibles
 	public ListarRequest(String placa, String cedula, Date horaInicio, Date horaFin, Double precioPagar, Date fecha,
 			int codigo, String ubicacion) {
 		super();

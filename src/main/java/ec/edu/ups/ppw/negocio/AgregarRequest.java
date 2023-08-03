@@ -1,11 +1,12 @@
 package ec.edu.ups.ppw.negocio;
 
 public class AgregarRequest {
+	//Atributos para poder crear una placa
 	private String placa;
 	private String cedula;
 	private String ubicacion;
 	private String tiempo;
-	
+	//Getter y Setter para los atributos de una placa
 	public String getPlaca() {
 		return placa;
 	}

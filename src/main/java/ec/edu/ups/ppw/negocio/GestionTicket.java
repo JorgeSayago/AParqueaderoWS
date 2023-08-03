@@ -35,11 +35,15 @@ public class GestionTicket {
 	@Inject 
 	private SitioDAO daoSitio ;
 	
+	//Metodo para crear un ticket haciendo uso de la clase de apoyo 
 	public void guardarTicket(AgregarRequest request) throws Exception{
+		//Creamos un nuevo ticket
 		Ticket ticket = new Ticket();
+		//Leseteamos los atributos
 		ticket.setHoraInicio(new Date());
 		ticket.setFecha(new Date());
 		
+		//Obtenemos el vaor de la clase especial y calculamos valor a pagar
 		Double precioTarifa = Double.valueOf(request.getTiempo());
 		if (precioTarifa >= 5 && precioTarifa < 10) {
 			ticket.setPrecioPagar(precioTarifa*0.10);
@@ -55,21 +59,28 @@ public class GestionTicket {
         	ticket.setPrecioPagar(0.0);
         }
 		//ticket.setUbicacion(request.getUbicacion());
+		//Buscamos sitio y lo agregamos
 		Sitio s = daoSitio.read(request.getUbicacion());
 		s.setEstado(false);
 		daoSitio.update(s);
+		//Buscamos carro
 		 Carro c = daoCarro.read(request.getPlaca());
+		 //Buscamos persona
 		 Persona p = daoPersona.read(request.getCedula());
+		 //Seteamos los atributos en el ticket
 		 ticket.setCarro(c);
 		 ticket.setPersona(p);
 		 ticket.setSitio(s);
 			try {
+				//Insertamos el ticket a la base de datos
 				daoTicket.insert(ticket);
 			}catch(Exception e) {
 				throw new Exception("Error al insertar: " + e.getMessage());
 			}
 	}
 	
+	
+	//Metodo para elimianr un ticket de la base de datos
 	public void eliminarTicket(Ticket ticket) throws Exception {
 		
 	    Ticket ticket2 = daoTicket.read(ticket.getCodigo());
@@ -84,6 +95,7 @@ public class GestionTicket {
 	    }
 	}
 	
+	//Metodo para actualizar un ticket de la base de datos 
 	public void actualizarTicket(Ticket ticket) throws Exception {
 	    Ticket ticketExistente = daoTicket.read(ticket.getCodigo());
 	    if (ticketExistente == null) {
@@ -97,10 +109,15 @@ public class GestionTicket {
 	    }
 	}
 	
+	//Metodo para listar todos los tickets de la base de datos
 	public List<ListarRequest>getTickets(){
+		//Creamos una lista de respaldo
 		List<ListarRequest> listadoF = new ArrayList<ListarRequest>();
+		//obtenemos todos los tickets co uso del dao
 		List<Ticket> ticketsE=daoTicket.getAll();
+		//Recorremos la lista de tickets
 		for(Ticket t:ticketsE) {
+			//Damos valor a las  variables
 			String placa=t.getCarro().getPlaca();
 			String cedula=t.getPersona().getCedula();
 			Date horaInicio=t.getHoraInicio();
@@ -109,30 +126,13 @@ public class GestionTicket {
 			Date fecha=t.getFecha();
 			int codigo=t.getCodigo();
 			String ubicacion = t.getSitio().getUbicacion();
+			//Con uso del constructor creamos el objeto
 			ListarRequest lista = new ListarRequest(placa, cedula, horaInicio, horaFin, precioPagar, fecha,codigo,ubicacion);
+			//agregamos el objeto a la lista
 			listadoF.add(lista);
 		}
+		//devolvemos la nueva lista
 		return listadoF;
 	}
-	/*public List<Ticket>getTickets(){
-		return daoTicket.getAll();
-	}**/
-	
-	/**
-	 * public void guardarTicket(Ticket ticket) throws Exception{
-		if(daoTicket.read(ticket.getCodigo()) == null) {
-			try {
-				daoTicket.insert(ticket);
-			}catch(Exception e) {
-				throw new Exception("Error al insertar: " + e.getMessage());
-			}
-		}else {
-			try {
-				daoTicket.update(ticket);
-			}catch(Exception e) {
-				throw new Exception("Error al actualizar: " + e.getMessage());
-			}
-		}
-	}*/
 }
 
