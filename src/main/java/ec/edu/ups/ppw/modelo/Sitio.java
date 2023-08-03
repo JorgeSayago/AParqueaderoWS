@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Sitio {
+	
+	//Generamos los atributos para la clase Sitio
 	@Id
 	@Column(name="sit_ubicacion")
 	private String ubicacion;
@@ -20,6 +22,8 @@ public class Sitio {
 	@Column(name="sit_estado")
 	private boolean estado;
 
+	
+	//Generamos los getter y setter para la clase Sitio
 	public String getUbicacion() {
 		return ubicacion;
 	}

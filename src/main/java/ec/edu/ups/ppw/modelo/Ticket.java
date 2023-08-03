@@ -16,6 +16,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Ticket {
 	
+	//Generamos los atributos para la clase Ticket
 	@Id
 	@GeneratedValue
 	@Column(name="tic_codigo")
@@ -36,18 +37,22 @@ public class Ticket {
 	@Column(name="tic_ubicacion")
 	private String ubicacion;
 	
+	//Aqui realizamos la relación del ticket con la persona
 	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="per_cedula")
 	private Persona persona;
 	
+	//Aqui realizamos la relación del ticket con el sitio
 	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="sit_ubicacion")
 	private Sitio sitio;
 	
+	//Aqui realizamos la relación del ticket con el carro
 	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="car_placa")
 	private Carro carro;
 
+	//Getter y setter para la clase ticket
 	public int getCodigo() {
 		return codigo;
 	}
@@ -105,15 +110,6 @@ public String getUbicacion() {
 		this.ubicacion = ubicacion;
 	}
 
-	/*
-	public LugarParqueo getLugarParqueo() {
-		return lugarParqueo;
-	}
-
-	public void setLugarParqueo(LugarParqueo lugarParqueo) {
-		this.lugarParqueo = lugarParqueo;
-	}
-*/
 	public Carro getCarro() {
 		return carro;
 	}
@@ -130,6 +126,7 @@ public String getUbicacion() {
 		this.sitio = sitio;
 	}
 
+	//toString para la clase ticket
 	@Override
 	public String toString() {
 		return "Ticket [codigo=" + codigo + ", horaInicio=" + horaInicio + ", horaFin=" + horaFin + ", fecha=" + fecha

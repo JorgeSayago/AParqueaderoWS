@@ -16,24 +16,30 @@ public class SitioDAO implements Serializable {
 	@PersistenceContext
 	private EntityManager em;
 	
+	
+	//Metodo para insertar un sitio a la base de datos
 	public void insert(Sitio sitio) {
 		em.persist(sitio);
 	}
 	
+	//Metodo para actualizar un sitio 
 	public void update(Sitio sitio) {
 		em.merge(sitio);
 	}
 	
+	//Metodo para buscar un sitio a partir de la ubicacion o codigo
 	public Sitio read(String ubicacion) {
 		Sitio s = em.find(Sitio.class, ubicacion);
 		return s;
 	}
 	
+	//Metodo para eliminar un Sitio a partir de la ubicacion o codigo
 	public void delete(String ubicacion) {
 		Sitio s = em.find(Sitio.class, ubicacion);
 		em.remove(s);
 	}
 	
+	//Metodo para obtener una lista de sitios de la base de datos
 	public List<Sitio> getAll(){
 		String jpql = "SELECT s FROM Sitio s";
 		Query q = em.createQuery(jpql);

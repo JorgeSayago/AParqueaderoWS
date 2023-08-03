@@ -17,24 +17,30 @@ public class TicketDAO implements Serializable{
 	@PersistenceContext
 	private EntityManager em;
 	
+	
+	//Metodo para insertar un ticket a la base de datos
 	public void insert(Ticket ticket) {
 		em.persist(ticket);
 	}
 	
+	//Metodo para actualizar un ticket 
 	public void update(Ticket ticket) {
 		em.merge(ticket);
 	}
 	
+	//Metodo para obtener un ticket a partir del codigo
 	public Ticket read(int codigo) {
 		Ticket t = em.find(Ticket.class, codigo);
 		return t;
 	}
 	
+	//Metodo para eliminar un ticket a partir del codigo
 	public void delete(int codigo) {
 		Ticket t = em.find(Ticket.class, codigo);
 		em.remove(t);
 	}
 	
+	//Metodo para obtener una lista de tickets de la base de datos
 	public List<Ticket> getAll(){
 		String jpql = "SELECT t FROM Ticket t";
 		Query q = em.createQuery(jpql);
